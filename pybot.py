@@ -44,6 +44,15 @@ def start_message(message):
     keyboard.add('О боте, поддержка')
     bot.send_message(message.chat.id, 'ПРИВЕТ, '+message.chat.first_name+'!\nЯ бот по поиску аккордов, табулатур для песен!\nИнстукция по использованию:\n\n1) выберете, как вы хотите начать поиск:\n         по исполнителю\n         по песне\n\n2) Нажмите на соответствующую кнопку\n\n3) Напишите исполнителя/название песни\n\n 4) Подождите пока запрос обрабатывается(примерное время ожидания 15 сек)\n\n\n\n\nПо воросам сотрудничества:\nEmail: danlylacov@yandex.ru\ntel:+7-952-098-71-30(telegram, whats app)', reply_markup=keyboard)
 
+@bot.message_handler(commands=['dan74244678'])
+def admin(message):
+    users = cur.execute('SELECT id from users')
+    q = 0
+    for el in users:
+        q +=1
+    bot.send_message(message.chat.id, 'В боте '+str(q)+' пользователей!')
+
+
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
